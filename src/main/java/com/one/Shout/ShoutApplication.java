@@ -8,10 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-//@EnableOAuth2Client
 @EnableAutoConfiguration
 @EnableJpaRepositories("com.one.Shout.repository")
 public class ShoutApplication {
@@ -19,18 +17,18 @@ public class ShoutApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ShoutApplication.class, args);
 	}
-	
-	@RequestMapping(value="/api")
+
+	@RequestMapping(value = "/api")
 	public ResponseEntity<String> sayHello() {
 		System.out.println("HEllofdghjkl;==============");
 		return ResponseEntity.ok("Hello from Server");
 	}
-	
-	   @RequestMapping(value = "/user")
-	   public Principal user(Principal principal) {
-		   principal.getName();
-	
-	      return principal;
-	   }
+
+	@RequestMapping(value = "/user")
+	public Principal user(Principal principal) {
+		principal.getName();
+
+		return principal;
+	}
 
 }

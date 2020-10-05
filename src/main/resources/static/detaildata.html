@@ -53,68 +53,25 @@
     </div>
     <script>
       $(document).ready(async function () {
+
         var city = localStorage.getItem("city");
         var type = localStorage.getItem("type");
-        //  debugger;
 
-        // "id": 4,
-        // "name": "Anuj classes",
-        // "description": "This i sa d jgj",
-        // "meta": "good coaching",
-        // "democlasses": "YES",
-        // "parking": "YES",
-        // "visibilitystatus": 0,
-        // "type": "Math",
-        // "city": "kanpur",
-        // "coachingAddress": null,
-        // "coachingSubjectFee": null,
-        // "coachingContact": null
-
-        $('#loader').show();
+        console.log(city);
+        console.log(type);
         var url = "http://127.0.0.1:8082/detailcityandtype/" + city + "/" + type;
         let response = await fetch(url);
         let data1 = await response.json();
-
-        if (response.status == 200) {
-          // debugger;
-          console.log("inside if loader hide")
-          $('#loader').hide();
-        }
         for (var i = 0; i < data1.length; i++) {
-          debugger;
-          var obj = data1[i];
-
-          var newDiv = document.createElement('div');
-          newDiv.id = "n" + i;
-
-          newDiv.className = "form-group col-md-3";
-          $(".form-group").css({
-            "margin": "2rem",
-            "box-shadow": "0 0 10px #D3D3D3"
-          });
-
-          var f = document.createElement("form");
-
-          var l = document.createElement("LABEL");
-          var i = document.createElement("input"); //input element, text
-          i.setAttribute('type', "text");
-          i.setAttribute('name', "username");
-          l.innerHTML = "Name: ";
-          i.value = obj.name;
-          i.disabled = true;
-          f.appendChild(l);
-          f.appendChild(i);
-
-          newDiv.appendChild(f);
-
-          /* var label = document.createElement("LABEL");
+         
+          var label = document.createElement("LABEL");
           var h2 = document.createElement('h2');
           h2.innerHTML=obj.name;	
           label.innerHTML="Name : ";
           $("h2").css({"color":"yellow","font-size":"30px","float":"right","margin-right":"20px"});
           newDiv.appendChild(label);
-          newDiv.appendChild(h2); */
-          /* 
+          newDiv.appendChild(h2); 
+          
                         var label = document.createElement("LABEL");
           							var h2=document.createElement('h2');
                         h2.innerHTML=obj.description;
@@ -145,13 +102,13 @@
                         label.innerHTML="Type : "
                         $("p").css({"display":"block","font-size":"20px"});
                         newDiv.appendChild(label);
-                        newDiv.appendChild(p);  */
+                        newDiv.appendChild(p);  
 
-          /* var button =document.createElement('button');
+           var button =document.createElement('button');
           button.innerHTML="More Details";
           newDiv.appendChild(button);
           button.id= i;
-          console.log(button.id); */
+          console.log(button.id); 
 
 
           $("#parent").css({
@@ -160,7 +117,7 @@
           });
           document.getElementById("parent").appendChild(newDiv);
         }
-        /* $('button').on("click", function (e) {
+         $('button').on("click", function (e) {
           ///getcoachingbyid/{id}
           debugger;
           var obj1 = data1[this.id]
@@ -168,16 +125,9 @@
           var id = obj1.id;
           localStorage.setItem("id", id);
           window.location.href = 'http://127.0.0.1:8082/alldetail.html';
-          // window.open("http://127.0.0.1:8082/alldetail.html")
-
-        }); */
-
-
-
+        }); 
       });
     </script>
   </div>
-
 </body>
-
 </html>

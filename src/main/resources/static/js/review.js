@@ -1,7 +1,6 @@
 
 function allReviews() {
 
-var coachingreviewdata;
 var city=$('#ccity').val();
 var name=$('#cname').val();
 localStorage.setItem("city",city);
@@ -14,12 +13,12 @@ localStorage.setItem("name",name);
 	
 
 
-function reviewsdata(){
-	localStorage.clear();
-}
+// function reviewsdata(){
+// 	localStorage.clear();
+// }
 
 function allCoachings(){
-var coachingdetaildata;
+
 var city=$('#mycitysearch').val();
 var type=$('#type :selected').text(); 
 localStorage.setItem("city",city);

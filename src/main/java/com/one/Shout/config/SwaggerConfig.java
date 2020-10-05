@@ -28,8 +28,8 @@ public class SwaggerConfig {
 
 
 	    private ApiInfo apiEndPointsInfo() {
-	        return new ApiInfoBuilder().title("Spring Boot ITSM  REST API")
-	            .description("ITSM REST API")
+	        return new ApiInfoBuilder().title("Rest Api Details for Shout Coaching App.")
+	            .description("REST API DETAILS FOR COACHING ADD AND REVIEW APIS")
 	            .license("Apache 2.0")
 	            .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
 	            .version("1.0.0")

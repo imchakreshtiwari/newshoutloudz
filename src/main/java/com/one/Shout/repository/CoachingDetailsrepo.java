@@ -16,8 +16,8 @@ public interface CoachingDetailsrepo extends CrudRepository<CoachingDetails, Lon
 
 	public CoachingDetails findByName(String name);
 
-	@Query(value = "select * from coaching_details where city=:city AND type=:type", nativeQuery = true)
-	public List<CoachingDetails> getCoachingDetails(@Param("city") String city, @Param("type") String type);
+	@Query(value = "select * from coaching_details where city=:city AND type=:type AND is_approved=:isApproved", nativeQuery = true)
+	public List<CoachingDetails> getCoachingDetails(@Param("city") String city, @Param("type") String type, @Param("isApproved") Boolean isApproved);
 
 	@Query(value = "select city from coaching_details where city LIKE %:city%", nativeQuery = true)
 	public List<String> getCities(@Param("city") String city);

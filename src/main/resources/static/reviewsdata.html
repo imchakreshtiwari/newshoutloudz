@@ -28,11 +28,9 @@
 		<div id="parent" class="row">	
         </div>
         <script>
+             var city = window.localStorage.getItem("city");
+             var name = window.localStorage.getItem("name");
             $( document ).ready(async function() {
-              var city = localStorage.getItem("city");
-              var name = localStorage.getItem("name");
-           
-              
               var url= "http://127.0.0.1:8082/reviewbycityandname/"+city+"/"+name;
               let response = await fetch(url);
               if(response.ok){

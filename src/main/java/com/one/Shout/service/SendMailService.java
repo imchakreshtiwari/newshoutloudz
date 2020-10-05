@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class SendMailService {
 	
 	@Autowired
-	JavaMailSender javaMailSender;
+	private JavaMailSender javaMailSender;
 	
 	 public void sendingMail(String to, String subject, String body) throws MessagingException {
 		    MimeMessage message=javaMailSender.createMimeMessage();
@@ -21,7 +21,6 @@ public class SendMailService {
 		    helper.setTo(to);
 		    helper.setSubject(subject);
 		    helper.setText(body);
-		    System.out.println("inside method service---=-=-===========================");
 		    javaMailSender.send(message);
 		 }
 }

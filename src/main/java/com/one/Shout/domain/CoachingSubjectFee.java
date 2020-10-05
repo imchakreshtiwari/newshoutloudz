@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,12 +29,10 @@ public class CoachingSubjectFee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@JsonProperty
 	private String subjectname;
-	@JsonProperty
 	private String fees;
-	@JsonProperty
 	private String classorbatch;
+	private Integer batchWiseStudents;
 	
 	
 	@JsonBackReference

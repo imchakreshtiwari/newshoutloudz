@@ -12,8 +12,8 @@ import com.one.Shout.domain.CoachingReviewmain;
 @Repository
 public interface CoachingReviewmainRepo  extends JpaRepository<CoachingReviewmain, Long>{
 
-	public CoachingReviewmain findBycoachingname(String coachingname);
+	public List<CoachingReviewmain> findBycoachingname(String coachingname);
 	
-	@Query(value ="select * from coachingreviewmain where coachingcity=:coachingcity AND coachingname=:coachingname ",nativeQuery = true)
-	public List<CoachingReviewmain> getCoachingReviews(@Param("coachingcity") String coachingcity,@Param("coachingname") String coachingname);
+	@Query(value ="select * from coachingreviewmain where coachingcity=:coachingcity AND coachingname=:coachingname AND is_approved=:isApproved",nativeQuery = true)
+	public List<CoachingReviewmain> getCoachingReviews(@Param("coachingcity") String coachingcity,@Param("coachingname") String coachingname, @Param("isApproved") Boolean isApproved);
 }

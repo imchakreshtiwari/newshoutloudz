@@ -16,7 +16,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
@@ -29,18 +28,11 @@ public class Users {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@JsonProperty
 	private String name;
-
-	@JsonProperty
 	private String email;
-
-	@JsonProperty
 	private String phoneno;
-
 	private String password;
 
-	// @Column(name = "created_date", nullable = false, updatable = false)
 	@CreationTimestamp
 	private Calendar createdDate;
 

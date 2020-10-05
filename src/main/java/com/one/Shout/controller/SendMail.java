@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.one.Shout.service.SendMailService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 @CrossOrigin
 public class SendMail {
@@ -21,7 +24,8 @@ public class SendMail {
 	
 	@RequestMapping(value = "/sendemail")
 	public String sendEmail() throws AddressException, MessagingException, IOException {
-		System.out.println("inside method controller---=-=-===========================");
+		
+		log.info("Calling Mail API to send Email");
 		sendMailService.sendingMail("chakresh@acis.io", "Message From XYZ", "BODY");
 		return "Email sent successfully";
 	}
