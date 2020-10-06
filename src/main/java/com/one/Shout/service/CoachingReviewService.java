@@ -21,4 +21,6 @@ public interface CoachingReviewService {
 	public CoachingReviewmain updateReview(CoachingReviewmain coachingReviewmain);
 	
 	public void deleteReview(Long id);
+	
+	public List<CoachingReviewmain> getRecentlyAddedReviews();
 }

@@ -40,7 +40,6 @@ public class CoachingDetails {
 	private String type;
 	private String city;
 
-	@JsonManagedReference
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "address_id")
 	private CoachingAddress coachingAddress;
@@ -49,7 +48,6 @@ public class CoachingDetails {
 	@OneToMany(mappedBy = "coachingDetails", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<CoachingSubjectFee> coachingSubjectFee;
 
-	@JsonManagedReference
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "contact_id")
 	private CoachingContact coachingContact;

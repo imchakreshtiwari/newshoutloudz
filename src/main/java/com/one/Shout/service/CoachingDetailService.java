@@ -23,4 +23,6 @@ public interface CoachingDetailService {
 	public CoachingDetails updateCoachingDetails(CoachingDetails coachingDetails);
 	
 	public void deleteCoachingDetail(Long id);
+	
+	public List<CoachingDetails> getRecentCoachings();
 }

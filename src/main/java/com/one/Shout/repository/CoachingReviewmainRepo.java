@@ -16,4 +16,8 @@ public interface CoachingReviewmainRepo  extends JpaRepository<CoachingReviewmai
 	
 	@Query(value ="select * from coachingreviewmain where coachingcity=:coachingcity AND coachingname=:coachingname AND is_approved=:isApproved",nativeQuery = true)
 	public List<CoachingReviewmain> getCoachingReviews(@Param("coachingcity") String coachingcity,@Param("coachingname") String coachingname, @Param("isApproved") Boolean isApproved);
+
+	@Query(value = "SELECT * FROM coachingreviewmain ORDER BY id DESC LIMIT 10", nativeQuery = true)
+	public List<CoachingReviewmain> getRecentlyAddedReviews();
+
 }

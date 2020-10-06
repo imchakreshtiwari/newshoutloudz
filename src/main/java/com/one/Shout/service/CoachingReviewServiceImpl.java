@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.one.Shout.domain.CoachingReviewmain;
+import com.one.Shout.exception.RecordAlreadyExistException;
 import com.one.Shout.repository.CoachingReviewmainRepo;
-import com.one.Shout.repository.ReviewCriteriaRepo;
-import com.one.Shout.repository.Usercontactrepo;
-import com.one.Shout.repository.Userrepo;
 
 @Service
 public class CoachingReviewServiceImpl implements CoachingReviewService{
@@ -17,20 +15,14 @@ public class CoachingReviewServiceImpl implements CoachingReviewService{
 	@Autowired
 	private CoachingReviewmainRepo coachingReviewmainRepo;
 	
-	@Autowired
-	private ReviewCriteriaRepo reviewCriteriaRepo;
-	
-	@Autowired
-	private Userrepo userRepo;
-	
-	@Autowired
-	private Usercontactrepo usercontactrepo;
-	
 	@Override
 	public CoachingReviewmain addReview(CoachingReviewmain coachingReviewmain) {
 		
 		coachingReviewmain.setIsApproved(false);
 		CoachingReviewmain coachingReviewmainobj = coachingReviewmainRepo.save(coachingReviewmain);
+		if (coachingReviewmainobj == null) {
+			throw new RecordAlreadyExistException("Record Not Saved in DB");
+		}
 		return coachingReviewmainobj;
 	}
 	
@@ -71,13 +63,17 @@ public class CoachingReviewServiceImpl implements CoachingReviewService{
 	public CoachingReviewmain updateReview(CoachingReviewmain coachingReviewmain) {
 		
 		CoachingReviewmain coachingReviewObj = coachingReviewmainRepo.findById(coachingReviewmain.getId()).orElse(null);
-		coachingReviewObj.setCoachingname(coachingReviewmain.getCoachingname());
-		coachingReviewObj.setReviewHeadLine(coachingReviewmain.getReviewHeadLine());
-		coachingReviewObj.setPros(coachingReviewmain.getPros());
-		coachingReviewObj.setCons(coachingReviewmain.getCons());
-		coachingReviewObj.setSuggestions(coachingReviewmain.getSuggestions());
-		coachingReviewObj.setOverAllRating(coachingReviewmain.getOverAllRating());
-		CoachingReviewmain coachingreviewobjResponse = coachingReviewmainRepo.save(coachingReviewObj);
+		CoachingReviewmain coachingreviewobjResponse = null;
+		if (coachingReviewObj != null) {
+			coachingReviewObj.setCoachingname(coachingReviewmain.getCoachingname());
+			coachingReviewObj.setReviewHeadLine(coachingReviewmain.getReviewHeadLine());
+			coachingReviewObj.setPros(coachingReviewmain.getPros());
+			coachingReviewObj.setCons(coachingReviewmain.getCons());
+			coachingReviewObj.setSuggestions(coachingReviewmain.getSuggestions());
+			coachingReviewObj.setOverAllRating(coachingReviewmain.getOverAllRating());
+			coachingreviewobjResponse = coachingReviewmainRepo.save(coachingReviewObj);
+		}
+
 		return coachingreviewobjResponse;
 	}
 	
@@ -85,5 +81,11 @@ public class CoachingReviewServiceImpl implements CoachingReviewService{
 	public void deleteReview(Long id) {
 		
 		coachingReviewmainRepo.deleteById(id);
+	}
+	
+	@Override
+	public List<CoachingReviewmain> getRecentlyAddedReviews(){
+		
+		return coachingReviewmainRepo.getRecentlyAddedReviews();
 	}
 }

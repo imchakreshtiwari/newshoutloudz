@@ -24,4 +24,7 @@ public interface CoachingDetailsrepo extends CrudRepository<CoachingDetails, Lon
 
 	@Query(value = "select id from coaching_details where city=:city AND name=:name", nativeQuery = true)
 	public Long getCoachingid(@Param("city") String city, @Param("name") String name);
+	
+	@Query(value = "SELECT * FROM coaching_details ORDER BY id DESC LIMIT 10", nativeQuery = true)
+	public List<CoachingDetails> getRecentlyAddedCoachings();
 }

@@ -1,6 +1,7 @@
 package com.one.Shout.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.one.Shout.domain.CoachingDetails;
@@ -36,6 +38,11 @@ public class CoachingDetailController {
 	@Autowired
 	private SendMailService sendMailService;
 
+	@RequestMapping("/env")
+	public @ResponseBody Map<String, String> env() {
+	    return System.getenv();
+	}
+	
 	@PostMapping(value = "/coachingdetails")
 	public CoachingDetails addCoachingDetails(@RequestBody CoachingDetails coachingDetails) {
 	
@@ -133,5 +140,12 @@ public class CoachingDetailController {
 		}
 		return ResponseEntity.ok("Email Sent Successfully! Will Contact You Soon ");
 
+	}
+	
+	@GetMapping(value = "/coachingdetails/recent")
+	public List<CoachingDetails> getRecentCoachings(){
+		
+		log.info("Calling api to get recently added Coachings");
+		return coachingDetailService.getRecentCoachings();
 	}
 }
